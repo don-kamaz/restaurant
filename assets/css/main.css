@@ -1,0 +1,87 @@
+button,
+button:hover,
+button:focus {
+	font-family: inherit;
+	outline: none;
+	border: none;
+}
+
+#main-menu {
+  display: block;
+}
+
+.overlay-form {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(168, 161, 161, .48);
+  z-index: 10;
+  left: 0;
+  top: 0;
+}
+
+.header-form-book {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-top: 20%;
+  z-index: 50;
+}
+
+#wrapper-modal {
+  display: none;
+}
+
+.display-menu {
+  order: 3;
+  display: none;
+}
+
+.display-active {
+  display: block!important;
+}
+
+
+@media(max-width: 991px){
+  #navigation {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgb(102, 94, 94);
+    z-index: 100;  
+  }
+
+  #navigation a {
+    padding: 5px;
+    margin: 0;
+  }
+
+  #navigation:hover .submenu {
+    display: block;
+  }
+  
+  #navigation .submenu {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -20px;  
+    right: -20px;
+    display: flex;
+    width: 82px;
+    position: absolute;
+    top: 0;
+    left: -82px;  
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgb(102, 94, 94);
+  
+  }
+}
+
+#navigation .submenu a {
+  padding: 0;
+  margin: 0;
+}
+
