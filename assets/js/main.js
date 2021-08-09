@@ -100,3 +100,105 @@ $("form").validate({
     phoneNumber: "Введите ваш номер"
   }
 });
+
+// Функция валидации и вывода сообщений
+function vaiEl(el) {
+  el.validate({
+    rules: {
+      tel : {
+        reguired: true,
+        regex: `^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$`
+      },
+      name: {
+        reguire: true
+      },
+      email: {
+        reguired: true,
+        email: true
+      }
+    },
+    messages: {
+      tel: {
+        reguired: 'Поле обязательно для заполнения',
+        regex: `Талевон может содержать символы + - ()`
+      },
+      name: {
+        reguired: 'Поле обязательно для заполнения',
+      },
+      email: {
+        reguired: 'Поле обязательно для заполнения',
+        email: 'Неверный формат E-mail'
+      }
+    },
+
+    // Начинаем проверку Id="" формы
+    submitHandler: function(form) {
+      $('#preloader-active').fadeIn();
+      var $form = $(form);
+      var $formId = $(form).attr('id');
+      switch ($formId) {
+
+          //id="modals__window"
+      case 'modals__window':
+          $.ajax({
+                  type: 'POST',
+                  url: $form.attr('action'), 
+                  data: $form.serialize()
+              })
+              .done(function() {
+                  console.log('Success');
+              })
+              .fail(function() {
+                  console.log('Fail');
+              })
+              .always(function() {
+                  console.log('Always');
+                  setTimeout(function() {
+                      $form.trigger('reset');
+                      $('#preloader-active').fadeIn();
+                  }, 1100);
+                  setTimeout(function() {
+                      $('#preloader-active').fadeOut();
+                      $('.modals__wrapper').removeClass('active');
+                      $('body').css('overflow', 'auto', 'padding-right', '0px');
+                  }, 1300);
+                  $('#message-for-user').on('click', function(e) {
+                      $(this).fadeOut();
+                  });
+
+              });
+          break;
+
+      //id="booking"
+      case 'booking':
+          $.ajax({
+            type: 'POST',
+            url: $form.attr('action'), 
+            data: $form.serialize()
+          })
+          .done(function() {
+            console.log('Success');
+          })
+          .fail(function() {
+            console.log('Fail');
+          })
+          .always(function() {
+              console.log('Always');
+              setTimeout(function() {
+                $form.trigger('reset');
+                $('#preloader-active').fadeIn();
+              }, 1100);
+              setTimeout(function() {
+                $('#preloader-active').fadeOut();
+              }, 1300);
+              $('#message-for-user').on('click', function(e) {
+                $(this).fadeOut();
+              });
+
+          });
+          break;
+      }
+      return false;
+  }
+  })
+}
