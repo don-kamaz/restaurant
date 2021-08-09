@@ -139,7 +139,7 @@ function valEl(el) {
                 console.log('Fail');
               })
                 .always(function() {
-                  console.log('Always');
+                  console.log('always');
                   setTimeout(function() {
                     $form.trigger('reset');
                     $('#preloader-active').fadeIn();
