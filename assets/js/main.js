@@ -74,115 +74,101 @@ $('.hero-slide').slick({
 });
 
 /*  VALIDATE */
-
+$('[data-submit]').on('click', function(e) {
+  e.preventDefault();
+  $(this).parent('form').submit();
+})
 $.validator.addMethod("regex", function(value, element, regexp) {
   var regExsp = new RegExp(regexp);
   return regExsp.test(value);
-},"Please check your input."
+},"Please check your input"
 );
 
-$("form").validate({
-  rules: {
-    firstName: {
-      required: true,
-      regex : "[A-Za-z]{1,32}"   
-    },
-    phoneNumber: {
-      digits : true,
-      required: true,
-      minlength: 10,
-      maxlength: 11,
-      regex: "[0-9]+"
-    }
-  },
-  messages: {
-    firstName: "Введите ваше имя правильно",
-    phoneNumber: "Введите ваш номер"
-  }
-});
 
-// Функция валидации и вывода сообщений
-function vaiEl(el) {
+function valEl(el) {
   el.validate({
-    rules: {
-      tel : {
-        reguired: true,
-        regex: `^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$`
+    rules : {
+      name : {
+        required : true,
+        regex : "^[A-Za-z]+$"   
       },
-      name: {
-        reguire: true
-      },
-      email: {
-        reguired: true,
+      email : {
+        required : true,
         email: true
+      },
+      phone : {
+        digits : true,
+        required: true,
+        minlength: 10,
+        maxlength: 12,
+        regex: '[0-9]+'
       }
     },
-    messages: {
-      tel: {
-        reguired: 'Поле обязательно для заполнения',
-        regex: `Талевон может содержать символы + - ()`
+     messages : {
+        name : {
+        required : 'This is required',
+        regex : 'Please enter a valid name'   
       },
-      name: {
-        reguired: 'Поле обязательно для заполнения',
+      email : {
+        required : 'This is required',
+        regex : 'Please enter a valid email'
       },
-      email: {
-        reguired: 'Поле обязательно для заполнения',
-        email: 'Неверный формат E-mail'
+      phone : {
+        required: 'This is required',
+        regex : 'Please enter a valid phone number'
       }
     },
 
-    // Начинаем проверку Id="" формы
     submitHandler: function(form) {
       $('#preloader-active').fadeIn();
       var $form = $(form);
       var $formId = $(form).attr('id');
       switch ($formId) {
 
-          //id="modals__window"
-      case 'modals__window':
-          $.ajax({
-                  type: 'POST',
-                  url: $form.attr('action'), 
-                  data: $form.serialize()
+
+          case 'modals__window':
+            $.ajax({
+              type: 'POST',
+                url: $form.attr('action'), 
+                data: $form.serialize()
               })
               .done(function() {
-                  console.log('Success');
+                console.log('Success');
               })
               .fail(function() {
-                  console.log('Fail');
+                console.log('Fail');
               })
-              .always(function() {
+                .always(function() {
                   console.log('Always');
                   setTimeout(function() {
-                      $form.trigger('reset');
-                      $('#preloader-active').fadeIn();
+                    $form.trigger('reset');
+                    $('#preloader-active').fadeIn();
                   }, 1100);
                   setTimeout(function() {
-                      $('#preloader-active').fadeOut();
-                      $('.modals__wrapper').removeClass('active');
-                      $('body').css('overflow', 'auto', 'padding-right', '0px');
+                    $('#preloader-active').fadeOut();
+                    $('.modals__wrapper').removeClass('active');
+                    $('body').css('overflow', 'auto', 'padding-right', '0px');
                   }, 1300);
                   $('#message-for-user').on('click', function(e) {
-                      $(this).fadeOut();
+                    $(this).fadeOut();
                   });
 
-              });
-          break;
+                });
+              break;
 
-      //id="booking"
-      case 'booking':
-          $.ajax({
-            type: 'POST',
-            url: $form.attr('action'), 
-            data: $form.serialize()
-          })
-          .done(function() {
-            console.log('Success');
-          })
-          .fail(function() {
-            console.log('Fail');
-          })
-          .always(function() {
+          case 'booking':
+            $.ajax({
+              type: 'POST',
+                url: $form.attr('action'), 
+                data: $form.serialize()
+            })
+            .done(function() {
+              console.log('Success');
+            })
+            .fail(function() {
+              console.log('Fail');
+            })
+            .always(function() {
               console.log('Always');
               setTimeout(function() {
                 $form.trigger('reset');
@@ -194,11 +180,14 @@ function vaiEl(el) {
               $('#message-for-user').on('click', function(e) {
                 $(this).fadeOut();
               });
-
-          });
-          break;
+            });
+            break;
+          }
+          return false;
       }
-      return false;
+    })
   }
-  })
-}
+
+  $('.js-form').each(function() {
+    vaiEl($(this));
+  });

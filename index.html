@@ -68,10 +68,10 @@
                   <div id="wrapper-modal">
                     <div class="overlay-form" id="overlay-form"></div>
                     <form action="#" class="header-form-book form-book">
-                      <input type="text" class="form-book__input" placeholder="Name">
-                      <input type="text" class="form-book__input" placeholder="Email">
-                      <input type="text" class="form-book__input" placeholder="Phone">
-                      <button class="btn select-btn">Book Now</button>
+                      <input type="text" class="form-book__input" id="form-book__input"  placeholder="Name" name="name" required>
+                      <input type="email" class="form-book__input" id="form-book__input" placeholder="Email" name="email" required>
+                      <input type="tel" class="form-book__input" id="form-book__input" placeholder="Phone" name="tel" required>
+                      <button type="submit" class="btn select-btn">Book Now</button>
                     </form>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                 <div class="hero-slide">
                   <div class="hero__caption">
                     <span data-animation="fadeInLeft" data-delay=".2s">Discover Your Teste</span>
-                    <h1 data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
+                    <h1 data-animation="fadeInLeft" data-delay=".4s">Molecular kitchen</h1>
                     <p data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
                     <!-- Hero-btn -->
                     <div class="hero__btn">
@@ -111,7 +111,7 @@
                   </div>
                   <div class="hero__caption">
                     <span data-animation="fadeInLeft" data-delay=".2s">Discover Your Teste</span>
-                    <h1 data-animation="fadeInLeft" data-delay=".4s">Molecular cuisine restaurant</h1>
+                    <h1 data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
                     <p data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
                     <!-- Hero-btn -->
                     <div class="hero__btn">
@@ -521,10 +521,10 @@
         <div class="row justify-content-center">
           <div class="col-12">
             <form action="#" class="form-book">
-              <input type="text" class="form-book__input" placeholder="Name">
-              <input type="text" class="form-book__input" placeholder="Email">
-              <input type="text" class="form-book__input" placeholder="Phone">
-              <button class="btn select-btn">Book Now</button>
+              <input type="text" class="form-book__input" id="form-book__input" placeholder="Name" name="name" required>
+              <input type="email" class="form-book__input" id="form-book__input" placeholder="Email" name="email" required>
+              <input type="tel" class="form-book__input" id="form-book__input" placeholder="Phone" name="tel" required>
+              <button type="submit" class="btn select-btn">Book Now</button>
             </form>
           </div>
         </div>
@@ -755,7 +755,7 @@
   <script src="./assets/js/bootstrap.min.js"></script>
   <script src="./assets/js/parallax.js"></script>
   <script src="./assets/js/slick.min.js"></script>
-  <script src="./assets/js/jquery.validate.min.js"></script>
+
   <!-- Jquery Plugins, main Jquery -->	
   <script src="./assets/js/main.js"></script>
   </body>
