@@ -65,7 +65,7 @@ $('.border-btn').on('click', function() {
 })
 
 $('#overlay-form').on('click', function(){
-  $('#wrapper-modal').fadeOut();
+  $('#wrapper-modal').fadeOut();  //  закрытие модульного окна
 });
 
 /*  SLIDER  */
@@ -86,7 +86,7 @@ $.validator.addMethod("regex", function(value, element, regexsp) {
 );
 
 
-function valEl(el) {
+function valEl(el) {  //  должно быть идентично как и 195 строка
   el.validate({
     rules : {
       name : {
@@ -104,17 +104,17 @@ function valEl(el) {
         maxlength: 12,
         regex: '[0-9]+'
       }
-    },
-     messages : {
+    },  //  когда ошибки ну привлечение внимания 
+     messages : { //  name input
         name : {
         required : 'This is required',
         regex : 'Please enter a valid name'   
       },
-      email : {
+      email : { //  name input
         required : 'This is required',
         regex : 'Please enter a valid email'
       },
-      phone : {
+      tel : { //  name input
         required: 'This is required',
         regex : 'Please enter a valid phone number'
       }
@@ -127,7 +127,7 @@ function valEl(el) {
       switch ($formId) {
 
 
-          case 'modals__window':
+          case 'header-form-book':  //   для отработки отправки формы id формы, привязываемся к форме
             $.ajax({
               type: 'POST',
                 url: $form.attr('action'), 
@@ -157,7 +157,7 @@ function valEl(el) {
                 });
               break;
 
-          case 'booking':
+          case 'header-book':
             $.ajax({
               type: 'POST',
                 url: $form.attr('action'), 
@@ -190,5 +190,5 @@ function valEl(el) {
   }
 
   $('.js-form').each(function() {
-    ($(this));
+    valEl($(this));
   });
