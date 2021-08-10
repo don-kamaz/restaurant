@@ -34,7 +34,8 @@
 
 
 /* parallax */
-new Parallax($('#scene').get(0))
+const scene = $('#scene').get(0);
+const parallaxInstance = new Parallax(scene);
 
 /* TABS */
 $('.nav-item').on('click', function () {
@@ -67,7 +68,7 @@ $('#overlay-form').on('click', function(){
   $('#wrapper-modal').fadeOut();
 });
 
-/*  слайдер  */
+/*  SLIDER  */
 $('.hero-slide').slick({
   autoplay: true,
   autoplaySpeed: 2000,
@@ -78,7 +79,7 @@ $('[data-submit]').on('click', function(e) {
   e.preventDefault();
   $(this).parent('form').submit();
 })
-$.validator.addMethod("regex", function(value, element, regexp) {
+$.validator.addMethod("regex", function(value, element, regexsp) {
   var regExsp = new RegExp(regexp);
   return regExsp.test(value);
 },"Please check your input"
@@ -90,7 +91,7 @@ function valEl(el) {
     rules : {
       name : {
         required : true,
-        regex : "^[A-Za-z]+$"   
+        regex : "^[A-Za-z]+"
       },
       email : {
         required : true,
@@ -189,5 +190,5 @@ function valEl(el) {
   }
 
   $('.js-form').each(function() {
-    vaiEl($(this));
+    ($(this));
   });
