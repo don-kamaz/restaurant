@@ -79,7 +79,7 @@ $('[data-submit]').on('click', function(e) {
   e.preventDefault();
   $(this).parent('form').submit();
 })
-$.validator.addMethod("regex", function(value, element, regexsp) {
+$.validator.addMethod("regex", function(value, element, regexp) {
   var regExsp = new RegExp(regexp);
   return regExsp.test(value);
 },"Please check your input"
@@ -97,7 +97,7 @@ function valEl(el) {  //  должно быть идентично как и 195
         required : true,
         email: true
       },
-      phone : {
+      tel : { //  одинаково со 117-ой
         digits : true,
         required: true,
         minlength: 10,
@@ -157,7 +157,7 @@ function valEl(el) {  //  должно быть идентично как и 195
                 });
               break;
 
-          case 'header-book':
+          case 'form-book':
             $.ajax({
               type: 'POST',
                 url: $form.attr('action'), 
